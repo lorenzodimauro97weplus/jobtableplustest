@@ -1,0 +1,34 @@
+﻿@page "/fetchdata"
+
+@using JobTablePlus.Models.Models;
+@using JobTablePlus.Services.Test;
+@inject WeatherForecastService ForecastService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+<DxButton Click="GetData">Refresh</DxButton>
+
+<DxGrid Data="@forecasts">
+    <Columns>
+        <DxGridDataColumn FieldName="Date" DisplayFormat="D" />
+        <DxGridDataColumn FieldName="TemperatureC" Caption="@("Temp. (\x2103)")" />
+        <DxGridDataColumn FieldName="TemperatureF" Caption="@("Temp. (\x2109)")" />
+    </Columns>
+</DxGrid>
+
+@code {
+    private IEnumerable<WeatherForecast>? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetData();
+        await base.OnInitializedAsync();
+    }
+
+    private async Task GetData()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}

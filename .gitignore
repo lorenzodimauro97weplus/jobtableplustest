@@ -1,3 +1,6 @@
+/JobTablePlus*/.vs/*
+/JobTablePlus*/.idea/*
 /.vs/*
-/obj/*
-/bin/*
+/.idea/*
+/JobTablePlus*/obj/*
+/JobTablePlus*/bin/*
